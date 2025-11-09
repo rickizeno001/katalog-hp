@@ -29,6 +29,6 @@ if (mysqli_num_rows($result) === 1) {
   exit;
 } else {
   // Kalo username dan password tidak ditemukan arahkan ke login.php
-  header("Location: index.php?error=" . urlencode("Username atau password salah"));
+  header("Location: login.php?error=" . urlencode("Username atau password salah"));
   exit;
 }

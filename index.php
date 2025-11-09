@@ -63,12 +63,34 @@ $data_phone = mysqli_fetch_all($result, MYSQLI_ASSOC);
     tr:nth-child(even) {
       background-color: #dddddd;
     }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .pesan {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
 <body>
   <div class="card">
     <a href="login.php">Login</a>
+
+    <?php if (isset($_GET['error'])): ?>
+      <div class="error"><?= htmlspecialchars($_GET['error']) ?></div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['pesan'])): ?>
+      <div class="pesan"><?= htmlspecialchars($_GET['pesan']) ?></div>
+    <?php endif; ?>
+    <br>
+
     <p>Selamat Datang Di System "Katalog HP"</p>
 
     <table border="1" style="width: 100%; text-align: left;">
