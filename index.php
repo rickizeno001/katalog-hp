@@ -58,6 +58,12 @@
       text-align: center;
       margin-top: 10px;
     }
+
+    .pesan {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
@@ -67,6 +73,10 @@
 
     <?php if (isset($_GET['error'])): ?>
       <div class="error"><?= htmlspecialchars($_GET['error']) ?></div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['pesan'])): ?>
+      <div class="pesan"><?= htmlspecialchars($_GET['pesan']) ?></div>
     <?php endif; ?>
     <br>
 
