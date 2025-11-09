@@ -1,6 +1,10 @@
 <?php
 session_start();
 require 'koneksi_db.php';
+
+if (!$_SESSION['user_id']) {
+  header("Location: index.php?error=" . urlencode("Anda harus login terlebih dahulu"));
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
