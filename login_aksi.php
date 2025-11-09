@@ -2,8 +2,8 @@
 session_start();
 require 'koneksi_db.php';
 
-$username = $_POST['username'] ?? '';
-$password = $_POST['password'] ?? '';
+$username = $_POST['username'];
+$password = $_POST['password'];
 
 $sql = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
 $result = mysqli_query($conn, $sql);
