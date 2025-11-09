@@ -1,56 +1,44 @@
+<?php
+session_start();
+require 'koneksi_db.php';
+
+// Query untuk cari data di tabel "phones"
+$sql = "SELECT * FROM phones";
+
+// Simpan hasil cari yg dari hasil pencarian table "phones"
+$result = mysqli_query($conn, $sql);
+$data_phone = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>Katalog HP</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f5f6fa;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      /* height: 100vh; */
     }
 
-    .login-box {
+    .card {
       background: white;
       padding: 25px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 300px;
+      width: 70%;
+      text-align: center;
     }
 
     h2 {
       text-align: center;
       margin-bottom: 20px;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-      width: 93%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-
-      margin-bottom: 20px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background-color: #3498db;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #2980b9;
+      font-size: 18px;
     }
 
     .error {
@@ -59,32 +47,55 @@
       margin-top: 10px;
     }
 
-    .pesan {
-      color: green;
-      text-align: center;
-      margin-top: 10px;
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
     }
   </style>
 </head>
 
 <body>
-  <div class="login-box">
-    <h2>Login</h2>
+  <div class="card">
+    <a href="login.php">Login</a>
+    <p>Selamat Datang Di System "Katalog HP"</p>
 
-    <?php if (isset($_GET['error'])): ?>
-      <div class="error"><?= htmlspecialchars($_GET['error']) ?></div>
-    <?php endif; ?>
+    <table border="1" style="width: 100%; text-align: left;">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama HP</th>
+          <th>Deskripsi</th>
+          <th>Harga</th>
+        </tr>
+      </thead>
 
-    <?php if (isset($_GET['pesan'])): ?>
-      <div class="pesan"><?= htmlspecialchars($_GET['pesan']) ?></div>
-    <?php endif; ?>
-    <br>
-
-    <form action="login_aksi.php" method="POST">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <button type="submit">LOGIN</button>
-    </form>
+      <tbody>
+        <?php
+        $no = 1;
+        foreach ($data_phone as $data): ?>
+          <tr>
+            <td><?php echo $no; ?></td>
+            <td><?php echo $data['name'] ?></td>
+            <td><?php echo $data['description'] ?></td>
+            <td><?php echo number_format($data['price']) ?></td>
+          </tr>
+          <?php
+          $no++;
+        endforeach; ?>
+      </tbody>
+    </table>
   </div>
 </body>
 
