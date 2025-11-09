@@ -80,8 +80,6 @@ $data_phone = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 <body>
   <div class="card">
-    <a href="login.php">Login</a>
-
     <?php if (isset($_GET['error'])): ?>
       <div class="error"><?= htmlspecialchars($_GET['error']) ?></div>
     <?php endif; ?>
@@ -93,7 +91,9 @@ $data_phone = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     <p>Selamat Datang Di System "Katalog HP"</p>
 
-    <table border="1" style="width: 100%; text-align: left;">
+    <a href="login.php">Login</a>
+
+    <table border="1" style="width: 100%; text-align: left; margin-top: 10px">
       <thead>
         <tr>
           <th>No</th>

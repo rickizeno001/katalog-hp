@@ -6,5 +6,5 @@ session_start();
 session_destroy();
 
 // mengalihkan halaman sambil mengirim pesan logout
-header("Location: index.php?pesan=" . urlencode("Logout berhasil"));
+header("Location: login.php?pesan=" . urlencode("Logout berhasil"));
 ?>
